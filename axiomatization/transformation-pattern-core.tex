@@ -1,0 +1,75 @@
+\documentclass[10pt,a4paper,fleqn]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+\textbf{Syntactic Sugar}
+\begin{equation}
+Energy \sqsubseteq \top
+\end{equation}
+\begin{equation}
+Material \sqsubseteq \top
+\end{equation}
+\begin{equation}
+Neighborhood \sqsubseteq \top
+\end{equation}
+\begin{equation}
+MaterialTransformation \sqsubseteq \top
+\end{equation}
+\begin{equation}
+hasInput \sqsubseteq \emph{U}
+\end{equation}
+\begin{equation}
+hasOutput \sqsubseteq \emph{U}
+\end{equation}
+\begin{equation}
+\top \sqsubseteq \lnot \exists N.\top
+\end{equation}
+
+\textbf{Surface Semantics}
+\begin{equation}
+Resource \sqsubseteq Material
+\end{equation}
+\begin{equation}
+Catalyst \sqsubseteq Material
+\end{equation}
+\begin{equation}
+ Artifact \sqsubseteq Material
+\end{equation}
+\begin{equation}
+Byproduct \sqsubseteq Material
+\end{equation}
+
+\textbf{Deep Semantics}
+\begin{equation}
+Resource \sqcap Catalyst \sqsubseteq \bot
+\end{equation}
+\begin{equation}
+Material \sqcap MaterialTransformation \sqsubseteq \bot
+\end{equation}
+\begin{equation}
+hasOutput \sqcap hasInput \sqsubseteq \emph{N}
+\end{equation}
+\begin{equation}
+Material \sqsubseteq \exists partOf. Neighborhood
+\end{equation}
+\begin{equation}
+Resource \sqsubseteq
+    \exists partOf.(Neighborhood \sqcap \exists partOf^-.Catalyst) 
+\end{equation}
+\begin{align}
+MaterialTransformation \sqsubseteq \exists hasOutput. (Material \sqcup Energy)\\\nonumber \sqcap \; \exists hasInput. (Resource \sqcup Catalyst\\\nonumber \sqcup \; Energy)
+\end{align}
+
+\bigskip 
+\textbf{Remarks}
+\begin{itemize}
+\item Why \textit{Neighborhood} and not \textit{nearby}? nearby can not be quantified easily.
+\item As we discussed before, do we need \textit{Material}?
+\item 14 may be too strong
+\item Note how axiom 17 is used for the 0...n Energy cardinality together with axiom 1. Otherwise Energy would never appear in the formalization.
+\item Axiom 16 is not exactly what we need but close, we can get there using one of two tricks. Restrict the interpretation of Resource and Catalyst without an explicit axiom, or have a new class \textit{Reacting} that is a subclass of both.
+\end{itemize}
+\end{document}
